@@ -76,5 +76,7 @@ return {
   -- Git related plugins
   'tpope/vim-fugitive',
   'lewis6991/gitsigns.nvim',
+  -- Better f navigation
+  'unblevable/quick-scope',
 
 }

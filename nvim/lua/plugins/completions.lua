@@ -9,14 +9,18 @@
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-cmdline',
+      'rafamadriz/friendly-snippets'
 
     },
     config = function ()
       local cmp = require("cmp")
+      local luasnip = require("luasnip")
+
+      require("luasnip.loaders.from_vscode").lazy_load()
 
       cmp.setup({
         completion = {
-          completeopt = "menu,menuone"
+          completeopt = "menuone,noinsert,noselect"
         },
         snippet = {
           expand = function(args)
@@ -24,11 +28,25 @@
           end
         },
         mapping = cmp.mapping.preset.insert({
+          ['<C-j>'] = cmp.mapping(
+              cmp.mapping.select_next_item(),
+              {'i','c'}
+          ),
+          ['<C-k>'] = cmp.mapping(
+              cmp.mapping.select_prev_item(),
+              {'i','c'}
+          ),
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-o>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<CR>'] = cmp.mapping(
+            cmp.mapping.confirm{
+              behavior = cmp.ConfirmBehavior.Insert,
+              select = false,
+            },
+            {"i", "c"}
+          ),
           ['<C-y>'] = cmp.mapping(
             cmp.mapping.confirm{
               behavior = cmp.ConfirmBehavior.Insert,
@@ -36,10 +54,24 @@
             },
             {"i", "c"}
           ),
+          ["<C-l>"] = cmp.mapping(function(fallback)
+              if luasnip.locally_jumpable(1) then
+                    luasnip.jump(1)
+              else
+                fallback()
+              end
+          end, { "i", "s" }),
+          ["<C-h>"] = cmp.mapping(function(fallback)
+              if luasnip.locally_jumpable(-1) then
+                luasnip.jump(-1)
+              else
+                fallback()
+              end
+            end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
           { name = "luasnip" },
+          { name = 'nvim_lsp' },
           { name = "path"},
           { name = "buffer", keyword_length = 3},
           { name = "nvim_lua"},
