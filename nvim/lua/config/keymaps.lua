@@ -19,7 +19,7 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
--- splits 
+-- splits
 keymap("n", "<leader>s-", ":resize -5<cr>", opts)
 keymap("n", "<leader>s+", ":resize +5<cr>", opts)
 keymap("n", "<leader>s_", ":vertical resize -5<CR>", opts)
@@ -38,11 +38,11 @@ keymap("n", "<leader>w", ":w<cr>", opts)
 keymap("n", "<leader>W", ":wall<cr>", opts)
 
 -- buffers
-keymap("n", "<leader>bl", ":blast<cr>", {noremap=false})
-keymap("n", "<leader>bf", ":bfirst<cr>", {noremap=false})
-keymap("n", "<leader>bp", ":bprev<cr>", {noremap=false})
-keymap("n", "<leader>bn", ":bnext<cr>", {noremap=false})
-keymap("n", "<leader>bd", ":bdelete<cr>", {noremap=false})
+keymap("n", "<leader>bl", ":blast<cr>", { noremap = false })
+keymap("n", "<leader>bf", ":bfirst<cr>", { noremap = false })
+keymap("n", "<leader>bp", ":bprev<cr>", { noremap = false })
+keymap("n", "<leader>bn", ":bnext<cr>", { noremap = false })
+keymap("n", "<leader>bd", ":bdelete<cr>", { noremap = false })
 
 -- better esc
 keymap("i", "jk", "<ESC>", opts)
@@ -62,5 +62,5 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Command Menu navigation
-keymap("c", "<C-j>",  'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true } )
-keymap("c", "<C-k>",  'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true } )
+keymap("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
+keymap("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
