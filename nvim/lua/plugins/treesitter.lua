@@ -13,6 +13,7 @@ return { -- Highlight, edit, and navigate code
 			auto_install = true,
 			highlight = {
 				enable = true,
+				additional_vim_regex_highlighting = { "python" },
 			},
 		})
 	end,
