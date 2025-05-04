@@ -34,11 +34,12 @@ LS_COLORS=$LS_COLORS:'ow=1;34:'; export LS_COLORS
 
 #set up beutiful prompts
 newline=$'\n'
-#PS1="%B%F{blue}┌─────%f%F{black}%K{blue}%n%k%f%F{blue}─────%f%F{black}%K{blue}%~%k%f%F{blue}${newline}└>%f%F{cyan}\$%f%b "
 PS1="%F{blue}┌─────%f%F{cyan}%n%f%F{blue}─────%f%F{cyan}%~%f%F{blue}${newline}└>%f%F{cyan}\$%f "
 
 # history 
-export HISTFILE=~/.cache/zsh/history
+# Set the directory we want to store history
+HISTFILE="${XDG_CACHE_HOME:-${HOME}/.cache/history"
+export HISTFILE=$HISTFILE
 HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 setopt appendhistory
@@ -50,4 +51,10 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+
+# add bash aliases
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi
+
 

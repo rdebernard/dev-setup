@@ -1,5 +1,6 @@
 return { --remove background
 	"xiyaowong/transparent.nvim",
+    event = "VimEnter",
 	config = function()
 		require("transparent").setup({
 			-- table: default groups
